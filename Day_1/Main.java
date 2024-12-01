@@ -1,5 +1,4 @@
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.Arrays;
 
@@ -37,6 +36,7 @@ public class Main{
                 left[i] = Integer.parseInt(line[0]);
                 right[i++] = Integer.parseInt(line[1]);
             }
+            myReader.close();
             //part 1
             sum = calc_distance(left, right);
 
@@ -46,6 +46,7 @@ public class Main{
             }
             System.out.println("The total distance is: " + sum);
             System.out.println("The similarity factor is: " + apperance);
+
         }
         catch(Exception e){
             System.out.println("Error!");
