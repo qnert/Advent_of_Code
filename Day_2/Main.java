@@ -5,35 +5,12 @@ import java.util.Vector;
 
 public class Main{
     public static Vector <Integer> convert_string(String str){
-        int i = 0;
         String[] splitted = str.split(" ");
         Vector <Integer> nbs = new Vector <> (splitted.length);
         for (String s: splitted){
             nbs.add(Integer.parseInt(s));
         }
         return nbs;
-    }
-
-    public static Boolean evaluate_safety_first(Vector <Integer> levels){
-        if (levels.elementAt(0) <= levels.elementAt(1)){
-            //increasing
-            for (int i = 0; i < levels.size() - 1; i++){
-                if (levels.elementAt(i) > levels.elementAt(i + 1) || levels.elementAt(i) == levels.elementAt(i + 1))
-                    return false;
-                else if (levels.elementAt(i + 1) - levels.elementAt(i) > 3)
-                    return false;
-            }
-        }
-        else if (levels.elementAt(0) >= levels.elementAt(1)){
-            //decreasing
-            for (int i = 0; i < levels.size() - 1; i++){
-                if (levels.elementAt(i) < levels.elementAt(i + 1) || levels.elementAt(i) == levels.elementAt(i + 1))
-                    return false;
-                else if (levels.elementAt(i) - levels.elementAt(i + 1) > 3)
-                    return false;
-            }
-        }
-        return true;
     }
 
     public static boolean isSafe(Vector<Integer> sequence) {
@@ -55,16 +32,24 @@ public class Main{
         return true;
     }
 
-
-    public static boolean evaluate_safety_second(Vector<Integer> sequence) {
-        for (int i = 0; i < sequence.size(); i++) {
-            Vector<Integer> modifiedSequence = new Vector<>(sequence);
-            modifiedSequence.remove(i);
-            if (isSafe(modifiedSequence)) {
-                return true;
+    public static boolean evaluate_safety(Vector<Integer> sequence, Boolean enabled) {
+        if (enabled == true){
+            for (int i = 0; i < sequence.size() - 1; i++){
+                if(!isSafe(sequence))
+                    return false;
             }
+            return true;
         }
-        return false;
+        else{
+            for (int i = 0; i < sequence.size(); i++) {
+                Vector<Integer> modifiedSequence = new Vector<>(sequence);
+                modifiedSequence.remove(i);
+                if (isSafe(modifiedSequence)) {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 
     public static void main(String[] args){
@@ -77,17 +62,17 @@ public class Main{
                 input.add(myReader.nextLine());
             }
             for (String s: input){
-                if (evaluate_safety_first(convert_string(s)) == true)
+                if (evaluate_safety(convert_string(s), true) == true)
                     counter++;
             }
-            System.out.println(counter);
+            System.out.println("[PART 1] The amount of safe reports: " + counter);
 
             counter = 0;
             for (String s: input){
-                if (evaluate_safety_second(convert_string(s)) == true)
+                if (evaluate_safety(convert_string(s), false) == true)
                     counter++;
             }
-            System.out.println(counter);
+            System.out.println("[PART 2] The amount of safe reports: " + counter);
             myReader.close();
 
         }
