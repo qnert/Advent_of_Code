@@ -6,7 +6,8 @@ Welcome to my solutions for [Advent of Code 2024](https://adventofcode.com/2024)
 
 This repository contains my solutions to the Advent of Code 2024 puzzles.
 
-* Day_1: Written in Java ✅
-* Day_2: Written in Java ✅ 
+* Day_01: Written in Java ✅
+* Day_02: Written in Java ✅
+* Day_03: Written in Java ✅ 
 
 Feel free to explore, fork, and use these solutions as inspiration for your own. Feedback and suggestions are welcome!
