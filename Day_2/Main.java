@@ -1,6 +1,5 @@
 import java.io.File;
 import java.util.Scanner;
-import java.util.ArrayList;
 import java.util.Vector;
 
 public class Main{
